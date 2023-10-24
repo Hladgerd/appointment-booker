@@ -22,13 +22,7 @@ class AppointmentSeeder extends Seeder
             ],
             [
                 'client_name' => fake()->name(),
-                'start' => '2023-10-08 08:00:00',
-                'end' => '2023-10-08 10:00:00',
-            ],
-            [
-                'client_name' => fake()->name(),
-                'start' => '2023-10-10 12:00:00',
-                'end' => '2023-10-10 16:00:00',
+                'frequency' => "DTSTART:20230106T100000\nRRULE:FREQ=WEEKLY;BYDAY=FR;BYHOUR=10,11,12,13,14,15",
             ],
         ];
 
