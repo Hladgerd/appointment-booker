@@ -21,12 +21,8 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->string('client_name', 2000);
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->foreignId('frequency_id');
-            $table->integer('day')->nullable();
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
         });
     }
