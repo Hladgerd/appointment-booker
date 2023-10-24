@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Appointment extends Model
 {
@@ -12,16 +11,13 @@ class Appointment extends Model
 
     protected $fillable = [
         'client_name',
-        'start_date',
-        'end_date',
-        'start_time',
-        'end_time',
-        'frequency_id',
-        'day',
+        'start',
+        'end',
     ];
 
-    public function type(): HasOne
-    {
-        return $this->hasOne(Frequency::class, 'id', 'frequency_id');
-    }
+    protected $casts = [
+        'start' => 'datetime',
+        'end' => 'datetime',
+    ];
+
 }
