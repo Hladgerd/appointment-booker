@@ -13,17 +13,19 @@ document.addEventListener('DOMContentLoaded', function() {
         plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, rrulePlugin ],
         timeZone: "Europe/Budapest",
         locale: huLocale,
-        hour12: false,
-        firstDay: 1,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: "dayGridMonth",
+        views: {
+            dayGridMonth: {
+                eventTimeFormat: { hour: '2-digit', minute: '2-digit', hour12: false}
+            }
+        },
         selectable: true,
         events: appointment,
-        timeFormat: 'H:mm',
     });
 
     calendar.render();
