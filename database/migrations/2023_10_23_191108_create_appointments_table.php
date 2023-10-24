@@ -24,6 +24,7 @@ return new class extends Migration
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
             $table->string('frequency')->nullable();
+            $table->string('duration')->nullable();
             $table->timestamps();
         });
     }

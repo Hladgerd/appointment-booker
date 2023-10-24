@@ -22,6 +22,7 @@ class AppointmentController extends Controller
                 'start' => $appointment->start,
                 'end' => $appointment->end,
                 'rrule' => $appointment->frequency,
+                'duration' => $appointment->duration,
             ];
         }
         return view('calendar', ['events' => $events]);

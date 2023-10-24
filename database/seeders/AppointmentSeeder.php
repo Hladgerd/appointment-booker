@@ -22,7 +22,8 @@ class AppointmentSeeder extends Seeder
             ],
             [
                 'client_name' => fake()->name(),
-                'frequency' => "DTSTART:20230106T100000\nRRULE:FREQ=WEEKLY;BYDAY=FR;BYHOUR=10,11,12,13,14,15",
+                'frequency' => "DTSTART:20230106T100000\nRRULE:FREQ=WEEKLY;BYDAY=FR;BYHOUR=10",
+                'duration' => '06:00',
             ],
         ];
 
