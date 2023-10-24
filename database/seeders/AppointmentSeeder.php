@@ -12,7 +12,9 @@ class AppointmentSeeder extends Seeder
      */
     public function run(): void
     {
-        Appointment::truncate();
+//        $even = range(2,54,2);
+        $evenWeeks = implode(',', range(2,52,2));
+        $oddWeeks = implode(',', range(1,52,2));
 
         $appointments = [
             [
@@ -24,13 +26,13 @@ class AppointmentSeeder extends Seeder
             [
                 // 2023-01-01-től minden páros héten hétfőn 10-12 óra
                 'client_name' => fake()->name(),
-                'frequency' => "DTSTART:20230109T000000Z\nRRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=MO;BYHOUR=10",
+                'frequency' => "DTSTART:20230109T000000Z\nRRULE:FREQ=WEEKLY;BYWEEKNO={$evenWeeks};BYDAY=MO;BYHOUR=10",
                 'duration' => '02:00',
             ],
             [
                 // 2023-01-01-től minden páratlan héten szerda 12-16 óra
                 'client_name' => fake()->name(),
-                'frequency' => "DTSTART:20230102T000000\nRRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=WE;BYHOUR=12",
+                'frequency' => "DTSTART:20230102T000000\nRRULE:FREQ=WEEKLY;BYWEEKNO={$oddWeeks};BYDAY=WE;BYHOUR=12",
                 'duration' => '04:00',
             ],
             [
