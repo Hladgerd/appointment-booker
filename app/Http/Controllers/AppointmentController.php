@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
 use App\Models\Appointment;
+use Illuminate\Http\JsonResponse;
 
 class AppointmentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the appointments.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $appointments = Appointment::all();
         $events = array();
@@ -25,7 +26,7 @@ class AppointmentController extends Controller
                 'duration' => $appointment->duration,
             ];
         }
-        return view('calendar', ['events' => $events]);
+        return response()->json($events);
     }
 
     /**
