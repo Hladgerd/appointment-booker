@@ -9,6 +9,9 @@ export let dataHandler = {
     getBusinessHours: async function () {
         return await apiGet(businessHoursApi);
     },
+    createNewAppointment: async function (payload) {
+        return await apiPost(appointmentsApi, payload);
+    },
 };
 
 async function apiGet(url) {
@@ -26,28 +29,6 @@ async function apiPost(url, payload) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
     });
-    if (response.ok) {
-        return response.json();
-    }
+    return response;
 }
 
-async function apiDelete(url) {
-    const response = await fetch(url, {
-        method: 'DELETE',
-        headers: {'Content-Type': 'application/json'},
-    });
-    if (response.ok) {
-        return response.json();
-    }
-}
-
-async function apiPut(url, data) {
-    const response = await fetch(url, {
-        method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data),
-    });
-    if (response.ok) {
-        return response.json();
-    }
-}
