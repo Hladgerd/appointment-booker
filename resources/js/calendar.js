@@ -5,8 +5,9 @@ import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import rrulePlugin from '@fullcalendar/rrule';
 import huLocale from "@fullcalendar/core/locales/hu";
+import {dataHandler} from "../../public/dataHandler.js";
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function () {
     const calendarEl = document.getElementById('calendar');
 
     // FullCalendar Options
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         views: {
             dayGridMonth: {
-                eventTimeFormat: { hour: '2-digit', minute: '2-digit', hour12: false}
+                eventTimeFormat: {hour: '2-digit', minute: '2-digit', hour12: false}
             }
         },
         timeZone: "Europe/Budapest",
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initialView: "dayGridMonth",
         selectable: true,
         navLinks: true,
-        events: appointment,
+        events: await dataHandler.getAppointments(),
     });
 
     calendar.render();
