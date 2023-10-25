@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         timeZone: "Europe/Budapest",
         locale: huLocale,
         initialView: "dayGridMonth",
+        weekNumbers: true,
+        slotMinTime: '06:00:00',
         selectable: true,
         navLinks: true,
         events: events,
