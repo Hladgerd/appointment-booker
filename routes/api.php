@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BusinessTimeController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -10,11 +9,10 @@ use Illuminate\Support\Facades\Route;
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
+| API routes to listing appointments and business hours
+| and to store new appointment
 */
 
 Route::get('/appointments', [AppointmentController::class, 'index']);
+Route::post('/appointments', [AppointmentController::class, 'store']);
 Route::get('/business-hours', [BusinessTimeController::class, 'index']);
