@@ -7,8 +7,12 @@ import rrulePlugin from '@fullcalendar/rrule';
 import huLocale from "@fullcalendar/core/locales/hu";
 import {dataHandler} from "../../public/dataHandler.js";
 
+
 document.addEventListener('DOMContentLoaded', async function () {
     const calendarEl = document.getElementById('calendar');
+    const appointments = await dataHandler.getAppointments();
+    const businessHours = await dataHandler.getBusinessHours();
+    const events = Object.assign(appointments, businessHours);
 
     // FullCalendar Options
     let calendar = new Calendar(calendarEl, {
@@ -34,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         initialView: "dayGridMonth",
         selectable: true,
         navLinks: true,
-        events: await dataHandler.getAppointments(),
+        events: events,
     });
 
     calendar.render();
