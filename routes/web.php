@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AppointmentController::class, 'index']);
+Route::get('/', function () {
+    return view('calendar');
+});
 
