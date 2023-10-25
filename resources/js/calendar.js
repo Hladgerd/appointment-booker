@@ -5,14 +5,14 @@ import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import rrulePlugin from '@fullcalendar/rrule';
 import huLocale from "@fullcalendar/core/locales/hu";
-import {dataHandler} from "../../public/dataHandler.js";
+import {dataHandler} from "./dataHandler.js";
 
 
 document.addEventListener('DOMContentLoaded', async function () {
     const calendarEl = document.getElementById('calendar');
     const appointments = await dataHandler.getAppointments();
     const businessHours = await dataHandler.getBusinessHours();
-    const events = Object.assign(appointments, businessHours);
+    const events = appointments.concat(businessHours);
 
     // FullCalendar Options
     let calendar = new Calendar(calendarEl, {
