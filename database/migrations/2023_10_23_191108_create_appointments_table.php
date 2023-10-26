@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * The database connection that should be used by the migration.
-     */
-    protected $connection = 'pgsql';
-
-    /**
      * Run the migrations.
      */
     public function up(): void
@@ -21,7 +16,7 @@ return new class extends Migration
             $table->string('client_name', 2000);
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
-            $table->string('frequency')->nullable();
+            $table->string('rrule')->nullable();
             $table->string('duration')->nullable();
             $table->timestamps();
         });

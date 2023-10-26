@@ -9,11 +9,6 @@ class BusinessTime extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'rrule',
-        'duration',
-    ];
-
     protected $casts = [
         'by_day' => 'array'
     ];

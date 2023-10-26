@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * The database connection that should be used by the migration.
-     */
-    protected $connection = 'pgsql';
-
-    /**
      * Run the migrations.
      */
     public function up(): void
