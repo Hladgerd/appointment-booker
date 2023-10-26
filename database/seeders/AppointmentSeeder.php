@@ -25,13 +25,13 @@ class AppointmentSeeder extends Seeder
             [
                 // 2023-01-01-től minden páros héten hétfőn 10-12 óra
                 'client_name' => fake()->name(),
-                'rrule' => "DTSTART:20230101T000000Z\nRRULE:FREQ=WEEKLY;BYWEEKNO={$evenWeeks};BYDAY=MO;BYHOUR=10",
+                'rrule' => "DTSTART:20230101T000000Z\nRRULE:FREQ=YEARLY;BYWEEKNO={$evenWeeks};BYDAY=MO;BYHOUR=10",
                 'duration' => '02:00',
             ],
             [
                 // 2023-01-01-től minden páratlan héten szerda 12-16 óra
                 'client_name' => fake()->name(),
-                'rrule' => "DTSTART:20230101T000000\nRRULE:FREQ=WEEKLY;BYWEEKNO={$oddWeeks};BYDAY=WE;BYHOUR=12",
+                'rrule' => "DTSTART:20230101T000000\nRRULE:FREQ=YEARLY;BYWEEKNO={$oddWeeks};BYDAY=WE;BYHOUR=12",
                 'duration' => '04:00',
             ],
             [
