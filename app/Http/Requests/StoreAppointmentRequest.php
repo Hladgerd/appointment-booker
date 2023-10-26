@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\FreeSlot;
 use App\Rules\WithinBusinessTime;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +25,7 @@ class StoreAppointmentRequest extends FormRequest
     {
         return [
             'clientName' => ['required', 'string', 'min:4', 'max:2000'],
-            'start' => ['bail', 'required', 'date', 'after:yesterday', new WithinBusinessTime()],
+            'start' => ['bail', 'required', 'date', 'after:yesterday', new WithinBusinessTime(), new FreeSlot()],
             'end' => ['bail', 'required', 'date', 'after:start'],
         ];
     }
