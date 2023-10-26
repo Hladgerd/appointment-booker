@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Validation\DataAwareRule;
 use Illuminate\Contracts\Validation\ValidationRule;
+use RRule\RRule;
 
 
 class FreeSlot implements DataAwareRule, ValidationRule
@@ -37,7 +38,7 @@ class FreeSlot implements DataAwareRule, ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!$this->isFreeAmongOnetime()){
+        if (!$this->isFreeAmongRecurring()){
             $fail('Az időpont már foglalt!');
         }
     }
@@ -56,6 +57,24 @@ class FreeSlot implements DataAwareRule, ValidationRule
             // De Morgan's law: Not (A Or B) <=> Not A And Not B
             // Which translates to: (StartA <= EndB) and (StartB <= EndA)
             if (($selectedStart <= $end) && ($start <= $selectedEnd)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Check if selected timeslot doesn't overlap any recurring appointment
+     */
+    private function isFreeAmongRecurring(): bool
+    {
+        $selectedStart = Carbon::parse($this->data['start']);
+        $selectedEnd = Carbon::parse($this->data['end']);
+        $bookedRecurringAppointments = Appointment::whereNotNull('rrule')->pluck('rrule');
+        foreach ($bookedRecurringAppointments as $bookedRecurringAppointment) {
+            $rrule = new RRule($bookedRecurringAppointment);
+            $occurrences = $rrule->getOccurrencesBetween($selectedStart, $selectedEnd);
+            if (count($occurrences)) {
                 return false;
             }
         }
