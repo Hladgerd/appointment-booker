@@ -37,11 +37,12 @@ class AppointmentController extends Controller
      */
     public function store(StoreAppointmentRequest $request)
     {
+        $validatedRequest = $request->safe()->all();
         try {
             $appointment = Appointment::create([
-                'client_name' => $request->validated('clientName'),
-                'start' => Carbon::parse($request->validated('start'))->toDateTimeString(),
-                'end' => Carbon::parse($request->validated('end'))->toDateTimeString(),
+                'client_name' => $validatedRequest['clientName'],
+                'start' => Carbon::parse($validatedRequest['start'])->toDateTimeString(),
+                'end' => Carbon::parse($validatedRequest['end'])->toDateTimeString(),
             ]);
             return response()->json(['message' => $appointment], Response::HTTP_CREATED);
         } catch (Exception $e) {
