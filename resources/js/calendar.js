@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     dayOfWeek: info.start.getUTCDay(),
                     startHour: info.start.getUTCHours(),
                     endHour: info.end.getUTCHours(),
+                    endMinutes: info.end.getUTCMinutes(),
                 }
                 const response = await dataHandler.createNewAppointment(appointmentPayload);
 

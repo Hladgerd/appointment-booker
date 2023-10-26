@@ -16,10 +16,4 @@ class Appointment extends Model
         'frequency',
         'duration',
     ];
-
-    protected $casts = [
-        'start' => 'datetime',
-        'end' => 'datetime',
-    ];
-
 }

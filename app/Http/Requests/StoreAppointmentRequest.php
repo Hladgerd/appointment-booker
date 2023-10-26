@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\WithinBusinessTime;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAppointmentRequest extends FormRequest
@@ -22,9 +23,9 @@ class StoreAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'clientName' => 'required|string|max:2000',
-            'start' => 'bail|required|date|after:yesterday',
-            'end' => 'bail|required|date|after:start',
+            'clientName' => ['required', 'string', 'min:4', 'max:2000'],
+            'start' => ['bail', 'required', 'date', 'after:yesterday', new WithinBusinessTime()],
+            'end' => ['bail', 'required', 'date', 'after:start'],
         ];
     }
 }

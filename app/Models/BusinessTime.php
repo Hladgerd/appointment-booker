@@ -12,5 +12,10 @@ class BusinessTime extends Model
     protected $fillable = [
         'frequency',
         'duration',
+        'by_day',
+    ];
+
+    protected $casts = [
+        'by_day' => 'array'
     ];
 }

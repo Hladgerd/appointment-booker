@@ -18,6 +18,10 @@ return new class extends Migration
     {
         Schema::create('business_times', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('from_date');
+            $table->string('freq');
+            $table->json('by_day');
+            $table->integer('by_hour');
             $table->string('frequency');
             $table->string('duration');
             $table->timestamps();

@@ -14,6 +14,10 @@ class BusinessTimeSeeder extends Seeder
     {
         // hétköznap 8-20 óráig
         BusinessTime::create([
+            'from_date' => '20230101T000000',
+            'freq' => 'DAILY',
+            'by_day' => [1, 2, 3, 4, 5],
+            'by_hour' => 8,
             'frequency' => "DTSTART:20230101T000000\nRRULE:FREQ=DAILY;BYDAY=MO,TU,WE,TH,FR;BYHOUR=8",
             'duration' => '12:00',
         ]);
