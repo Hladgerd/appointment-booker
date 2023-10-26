@@ -7,7 +7,6 @@ use App\Models\Appointment;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
-use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class AppointmentController extends Controller
@@ -35,7 +34,7 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAppointmentRequest $request)
+    public function store(StoreAppointmentRequest $request): JsonResponse
     {
         $validatedRequest = $request->safe()->all();
         try {
