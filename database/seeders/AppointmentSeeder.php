@@ -43,7 +43,7 @@ class AppointmentSeeder extends Seeder
             [
                 // 2023-06-01-től 2023-11-30-ig minden héten csütörtökön 16-20 óra
                 'client_name' => fake()->name(),
-                'rrule' => "DTSTART:20230601T000000\nRRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=16;UNTIL=20231130T000000",
+                'rrule' => "DTSTART:20230601T000000\nRRULE:UNTIL=20231130T000000;FREQ=WEEKLY;BYDAY=TH;BYHOUR=16",
                 'duration' => '04:00',
             ],
         ];
