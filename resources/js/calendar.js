@@ -1,4 +1,4 @@
-import {Calendar, formatDate} from "@fullcalendar/core";
+import {Calendar} from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                     clientName: clientName,
                     start: info.startStr,
                     end: info.endStr,
+                    dayOfWeek: info.start.getUTCDay(),
+                    startHour: info.start.getUTCHours(),
+                    endHour: info.end.getUTCHours(),
                 }
                 const response = await dataHandler.createNewAppointment(appointmentPayload);
 
