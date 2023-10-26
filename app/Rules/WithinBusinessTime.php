@@ -40,7 +40,7 @@ class WithinBusinessTime implements DataAwareRule, ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!$this->isBusinessHour()){
+        if (!$this->isBusinessDay() || !$this->isBusinessHour()){
             $fail('A foglalás nyitvatartási időn kívül esik!');
         }
     }
