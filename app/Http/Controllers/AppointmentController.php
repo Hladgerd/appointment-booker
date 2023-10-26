@@ -24,7 +24,7 @@ class AppointmentController extends Controller
                 'title' => $appointment->client_name,
                 'start' => $appointment->start,
                 'end' => $appointment->end,
-                'rrule' => $appointment->frequency,
+                'rrule' => $appointment->rrule,
                 'duration' => $appointment->duration,
             ];
         }

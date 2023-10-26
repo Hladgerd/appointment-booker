@@ -25,25 +25,25 @@ class AppointmentSeeder extends Seeder
             [
                 // 2023-01-01-től minden páros héten hétfőn 10-12 óra
                 'client_name' => fake()->name(),
-                'frequency' => "DTSTART:20230101T000000Z\nRRULE:FREQ=WEEKLY;BYWEEKNO={$evenWeeks};BYDAY=MO;BYHOUR=10",
+                'rrule' => "DTSTART:20230101T000000Z\nRRULE:FREQ=WEEKLY;BYWEEKNO={$evenWeeks};BYDAY=MO;BYHOUR=10",
                 'duration' => '02:00',
             ],
             [
                 // 2023-01-01-től minden páratlan héten szerda 12-16 óra
                 'client_name' => fake()->name(),
-                'frequency' => "DTSTART:20230101T000000\nRRULE:FREQ=WEEKLY;BYWEEKNO={$oddWeeks};BYDAY=WE;BYHOUR=12",
+                'rrule' => "DTSTART:20230101T000000\nRRULE:FREQ=WEEKLY;BYWEEKNO={$oddWeeks};BYDAY=WE;BYHOUR=12",
                 'duration' => '04:00',
             ],
             [
                 // 2023-01-01-től minden héten pénteken 10-16 óra
                 'client_name' => fake()->name(),
-                'frequency' => "DTSTART:20230101T000000\nRRULE:FREQ=WEEKLY;BYDAY=FR;BYHOUR=10",
+                'rrule' => "DTSTART:20230101T000000\nRRULE:FREQ=WEEKLY;BYDAY=FR;BYHOUR=10",
                 'duration' => '06:00',
             ],
             [
                 // 2023-06-01-től 2023-11-30-ig minden héten csütörtökön 16-20 óra
                 'client_name' => fake()->name(),
-                'frequency' => "DTSTART:20230601T000000\nRRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=16;UNTIL=20231130T000000",
+                'rrule' => "DTSTART:20230601T000000\nRRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=16;UNTIL=20231130T000000",
                 'duration' => '04:00',
             ],
         ];
