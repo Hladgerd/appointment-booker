@@ -10,9 +10,8 @@ class BusinessTime extends Model
     use HasFactory;
 
     protected $fillable = [
-        'frequency',
+        'rrule',
         'duration',
-        'by_day',
     ];
 
     protected $casts = [

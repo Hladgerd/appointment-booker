@@ -17,7 +17,7 @@ class BusinessTimeController extends Controller
 
         foreach ($businessHours as $businessHour) {
             $events[] = [
-                'rrule' => $businessHour->frequency,
+                'rrule' => $businessHour->rrule,
                 'duration' => $businessHour->duration,
                 'display' => 'inverse-background',
             ];
