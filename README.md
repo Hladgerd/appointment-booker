@@ -42,6 +42,11 @@ Run database migration and seed sample data:
 php artisan migrate --seed
 ```
 
+Build server:
+```
+npm run build
+```
+
 Start the local development server
 ```
 php artisan serve
@@ -58,6 +63,7 @@ DB_DATABASE=<your-DB-name>
 DB_USERNAME=<your-DB-username>
 DB_PASSWORD=<your-DB-password>
 php artisan migrate --seed
+npm run build
 php artisan serve
 ```
 
