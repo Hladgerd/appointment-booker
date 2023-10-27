@@ -72,11 +72,7 @@ class FreeSlot implements DataAwareRule, ValidationRule
         $selectedEnd = Carbon::parse($this->data['end']);
         $bookedRecurringAppointments = Appointment::whereNotNull('rrule')->pluck('rrule', 'duration');
         foreach ($bookedRecurringAppointments as $duration=>$rrule) {
-            $rruleArray = explode('=', $rrule);
-            $bookedStartHour = (int)end($rruleArray);
-            $durationHour = (int)substr($duration, 0, 2);
-            $evenWeeks = implode(',', range($bookedStartHour+1,$bookedStartHour+$durationHour));
-            $rruleAll = $rrule.','.$evenWeeks;
+            $rruleAll = $this->generateCompleteRrule($rrule, $duration);
             $rruleToCheck = new RRule($rruleAll);
             $occurrences = $rruleToCheck->getOccurrencesBetween($selectedStart, $selectedEnd);
             if (count($occurrences)) {
@@ -84,5 +80,17 @@ class FreeSlot implements DataAwareRule, ValidationRule
             }
         }
         return true;
+    }
+
+    /**
+     * Generate rrule with byhours value based on start hour and duration
+     */
+    private function generateCompleteRrule(string $rrule, string $duration): string
+    {
+        $rruleArray = explode('=', $rrule);
+        $byHourValue = (int)end($rruleArray);
+        $durationHourValue = (int)substr($duration, 0, 2);
+        $byHours = implode(',', range($byHourValue+1,$byHourValue+$durationHourValue));
+        return $rrule.','.$byHours;
     }
 }
