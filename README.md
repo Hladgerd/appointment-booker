@@ -60,3 +60,9 @@ DB_PASSWORD=<your-DB-password>
 php artisan migrate --seed
 php artisan serve
 ```
+
+## Testing instructions
+Open terminal in project's folder and run below command:
+```
+php artisan test
+```
