@@ -38,7 +38,7 @@ class FreeSlot implements DataAwareRule, ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!$this->isFreeAmongRecurring()){
+        if (!$this->isFreeAmongOnetime() || !$this->isFreeAmongRecurring()){
             $fail('Az időpont már foglalt!');
         }
     }
@@ -70,10 +70,15 @@ class FreeSlot implements DataAwareRule, ValidationRule
     {
         $selectedStart = Carbon::parse($this->data['start']);
         $selectedEnd = Carbon::parse($this->data['end']);
-        $bookedRecurringAppointments = Appointment::whereNotNull('rrule')->pluck('rrule');
-        foreach ($bookedRecurringAppointments as $bookedRecurringAppointment) {
-            $rrule = new RRule($bookedRecurringAppointment);
-            $occurrences = $rrule->getOccurrencesBetween($selectedStart, $selectedEnd);
+        $bookedRecurringAppointments = Appointment::whereNotNull('rrule')->pluck('rrule', 'duration');
+        foreach ($bookedRecurringAppointments as $duration=>$rrule) {
+            $rruleArray = explode('=', $rrule);
+            $bookedStartHour = (int)end($rruleArray);
+            $durationHour = (int)substr($duration, 0, 2);
+            $evenWeeks = implode(',', range($bookedStartHour+1,$bookedStartHour+$durationHour));
+            $rruleAll = $rrule.','.$evenWeeks;
+            $rruleToCheck = new RRule($rruleAll);
+            $occurrences = $rruleToCheck->getOccurrencesBetween($selectedStart, $selectedEnd);
             if (count($occurrences)) {
                 return false;
             }
