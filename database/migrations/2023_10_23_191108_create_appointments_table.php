@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('client_name', 2000);
+            $table->string('client_name', 100);
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
             $table->string('rrule')->nullable();
